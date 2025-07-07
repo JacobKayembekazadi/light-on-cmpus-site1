@@ -20,3 +20,17 @@ export interface TeamMember {
   linkedIn?: string;
   email?: string;
 }
+
+export interface Event {
+  id: number;
+  title: string;
+  description: string;
+  date: string;
+  time: string;
+  location: string;
+  type: 'workshop' | 'talk' | 'social' | 'meeting';
+  spotsAvailable: number;
+  totalSpots: number;
+  image?: string;
+  isRegistrationOpen: boolean;
+}

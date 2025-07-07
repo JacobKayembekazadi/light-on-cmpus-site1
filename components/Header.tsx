@@ -8,6 +8,7 @@ const Header: React.FC = () => {
         { href: '#offerings', text: 'What We Offer' },
         { href: '#about', text: 'About Us' },
         { href: '#team', text: 'Meet the Team' },
+        { href: '#events', text: 'Events' },
         { href: '#contact', text: 'Contact' },
     ];
 
@@ -21,7 +22,13 @@ const Header: React.FC = () => {
                     ))}
                 </div>
                 <a href="#contact" className="hidden md:inline-block bg-electric-mint text-midnight-ink font-bold py-2 px-4 rounded-lg hover:bg-amber transition-colors">Get Involved</a>
-                <button id="mobile-menu-button" className="md:hidden text-midnight-ink" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <button 
+                    id="mobile-menu-button" 
+                    className="md:hidden text-midnight-ink" 
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    title="Toggle mobile menu"
+                    aria-label="Toggle mobile menu"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
