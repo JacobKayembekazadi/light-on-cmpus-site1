@@ -11,7 +11,7 @@ const App: React.FC = () => {
     <div className="bg-warm-white text-midnight-ink font-sans">
       <Header />
       <Hero />
-      <main className="container mx-auto px-6 py-12">
+      <main className="container mx-auto px-4 md:px-6 py-8 md:py-12">
         <Offerings />
         <About />
       </main>

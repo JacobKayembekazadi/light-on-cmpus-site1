@@ -37,7 +37,7 @@ const offeringsData: Offering[] = [
 
 const OfferingCard: React.FC<{ offering: Offering }> = ({ offering }) => (
     <div className="bg-white rounded-lg shadow-lg hover:transform hover:-translate-y-1 hover:shadow-xl transition-all duration-300 overflow-hidden">
-        <div className="relative h-48 overflow-hidden">
+        <div className="relative h-40 sm:h-48 overflow-hidden">
             <img 
                 src={offering.image} 
                 alt={offering.title}
@@ -45,9 +45,9 @@ const OfferingCard: React.FC<{ offering: Offering }> = ({ offering }) => (
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
         </div>
-        <div className="p-6">
-            <h3 className="font-serif text-xl font-bold mb-3 text-midnight-ink">{offering.title}</h3>
-            <p className="text-gray-600 leading-relaxed">{offering.description}</p>
+        <div className="p-4 md:p-6">
+            <h3 className="font-serif text-lg md:text-xl font-bold mb-2 md:mb-3 text-midnight-ink">{offering.title}</h3>
+            <p className="text-gray-600 leading-relaxed text-sm md:text-base">{offering.description}</p>
         </div>
     </div>
 );
@@ -55,9 +55,9 @@ const OfferingCard: React.FC<{ offering: Offering }> = ({ offering }) => (
 
 const Offerings: React.FC = () => {
     return (
-        <section id="offerings" className="py-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-center mb-10">What We Offer</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section id="offerings" className="py-8 md:py-12">
+            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-6 md:mb-10 px-4">What We Offer</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 px-4">
                 {offeringsData.map((offering) => (
                     <OfferingCard key={offering.title} offering={offering} />
                 ))}
