@@ -9,23 +9,23 @@ const offeringsData: Offering[] = [
         image: "/images/light-on-campus-2.png"
     },
     {
-        title: "Dining & Workplace Etiquette",
-        description: "Master formal and casual settings, from the dining room to the office.",
+        title: "Personal Branding & Etiquette",
+        description: "Dining etiquette, communication skills, public speaking, and professional presence for every setting.",
         image: "/images/light-on-campus-3.jpg"
     },
     {
-        title: "Job Preparedness Training",
+        title: "Getting Ready for Employment",
         description: "CV clinics, mock interviews, and LinkedIn audits to land your dream job.",
         image: "/images/light-on-campus-4.jpg"
     },
     {
-        title: "Financial Fitness Series",
+        title: "Let's Talk About Money",
         description: "Master budgeting, student investing, and managing debt effectively.",
         image: "/images/light-on-campus-5.jpg"
     },
     {
-        title: "Leadership & Public-Speaking",
-        description: "Build confidence and command the room with our bootcamps and debate clubs.",
+        title: "Leadership Training",
+        description: "Build confidence and command the room with our leadership bootcamps and debate clubs.",
         image: "/images/lighton-campus-blog-1.jpg"
     },
     {

@@ -58,10 +58,66 @@ export interface EventRegistration {
   eventId: string;
   participantEmail: string;
   participantName: string;
+  studentId?: string;
+  residence?: string;
+  roomNumber?: string;
+  phoneNumber?: string;
+  year?: 'freshman' | 'sophomore' | 'junior' | 'senior' | 'graduate';
+  address?: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
   registrationDate: string;
   notificationPreferences: {
     email: boolean;
     sms?: boolean;
     push?: boolean;
   };
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: {
+    name: string;
+    avatar: string;
+    role: string;
+  };
+  publishDate: string;
+  lastModified: string;
+  category: 'student-life' | 'academic-success' | 'career-development' | 'wellness' | 'campus-news' | 'events';
+  tags: string[];
+  featured: boolean;
+  image: string;
+  readTime: number; // in minutes
+  likes: number;
+  comments: number;
+  // Facebook integration
+  facebookPost?: {
+    postId: string;
+    pageId: string;
+    postUrl: string;
+    embedUrl: string;
+    discussionCount: number;
+    reactions: {
+      like: number;
+      love: number;
+      haha: number;
+      wow: number;
+      sad: number;
+      angry: number;
+    };
+  };
+}
+
+export interface BlogCategory {
+  id: string;
+  name: string;
+  description: string;
+  color: 'electric-mint' | 'amber' | 'blue' | 'purple' | 'green' | 'red';
+  icon: React.ReactNode;
 }

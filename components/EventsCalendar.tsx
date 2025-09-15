@@ -166,15 +166,21 @@ const EventsCalendar: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'workshop' | 'talk' | 'social' | 'seminar'>('all');
   const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
 
-  const handleEventRegistration = async (eventId: string) => {
+  const handleEventRegistration = async (eventId: string, registrationData?: any) => {
     // In a real app, this would handle the registration process
     const event = sampleEvents.find(e => e.id === eventId);
     if (event) {
       // Mock registration data
       const registration: EventRegistration = {
         eventId,
-        participantEmail: 'user@example.com', // Would come from form
-        participantName: 'Sample User', // Would come from form
+        participantEmail: registrationData?.email || 'user@example.com',
+        participantName: registrationData?.name || 'Sample User',
+        studentId: registrationData?.studentId,
+        residence: registrationData?.residence,
+        roomNumber: registrationData?.roomNumber,
+        phoneNumber: registrationData?.phoneNumber,
+        year: registrationData?.year,
+        address: registrationData?.address,
         registrationDate: new Date().toISOString(),
         notificationPreferences: {
           email: true,
@@ -185,7 +191,13 @@ const EventsCalendar: React.FC = () => {
 
       // Schedule notifications
       await notificationService.scheduleEventReminders(event, registration);
-      alert(`Successfully registered for ${event.title}! You'll receive countdown reminders.`);
+      
+      // Show success message with personalized details
+      const successMessage = registrationData?.residence 
+        ? `Successfully registered for ${event.title}! We'll send reminders to ${registrationData.email}. ${registrationData.residence !== 'Off-Campus Housing' && registrationData.residence !== 'Commuter Student' ? `We have you down as living in ${registrationData.residence}${registrationData.roomNumber ? ` room ${registrationData.roomNumber}` : ''}.` : ''}`
+        : `Successfully registered for ${event.title}! You'll receive countdown reminders.`;
+      
+      alert(successMessage);
     }
   };
 
@@ -400,7 +412,7 @@ const EventsCalendar: React.FC = () => {
                         : 'bg-gradient-to-r from-amber to-amber/80 hover:from-amber/90 hover:to-amber'
                     }`}
                   >
-                    {event.registered >= event.capacity ? 'Join Waitlist' : 'Register & Get Reminders'}
+                    {event.registered >= event.capacity ? 'Join Waitlist' : 'Quick Register'}
                   </button>
                 </div>
               </div>

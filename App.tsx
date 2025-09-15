@@ -6,6 +6,7 @@ import Offerings from './components/Offerings';
 import About from './components/About';
 import Team from './components/Team';
 import EventsCalendar from './components/EventsCalendar';
+import Blog from './components/Blog';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -18,6 +19,7 @@ const App: React.FC = () => {
         <About />
         <Team />
         <EventsCalendar />
+        <Blog />
       </main>
       <Footer />
     </div>

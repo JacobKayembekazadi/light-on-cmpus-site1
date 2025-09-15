@@ -3,8 +3,37 @@ import type { Event } from '../types';
 
 interface EventVideoPromoProps {
   event: Event;
-  onRegister?: (eventId: string) => void;
+  onRegister?: (eventId: string, registrationData: any) => void;
 }
+
+// Pre-populated residence options
+const STUDENT_RESIDENCES = [
+  'Adams Hall',
+  'Baker House', 
+  'Carter Residence',
+  'Davis Hall',
+  'Evans Tower',
+  'Franklin House',
+  'Gateway Commons',
+  'Hamilton Hall',
+  'Jefferson House',
+  'Kennedy Hall',
+  'Lincoln Residence',
+  'Madison Hall',
+  'Roosevelt House',
+  'Washington Hall',
+  'Wilson Commons',
+  'Off-Campus Housing',
+  'Commuter Student'
+];
+
+const STUDENT_YEARS = [
+  { value: 'freshman', label: 'Freshman' },
+  { value: 'sophomore', label: 'Sophomore' },
+  { value: 'junior', label: 'Junior' },
+  { value: 'senior', label: 'Senior' },
+  { value: 'graduate', label: 'Graduate Student' }
+];
 
 const PlayIcon = () => (
   <svg className="w-8 h-8 md:w-12 md:h-12" fill="currentColor" viewBox="0 0 24 24">
@@ -34,9 +63,62 @@ const LocationIcon = () => (
 const EventVideoPromo: React.FC<EventVideoPromoProps> = ({ event, onRegister }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [showRegistration, setShowRegistration] = useState(false);
+  const [registrationData, setRegistrationData] = useState({
+    name: '',
+    email: '',
+    studentId: '',
+    residence: '',
+    roomNumber: '',
+    phoneNumber: '',
+    year: '',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zipCode: ''
+    }
+  });
 
   const handlePlayVideo = () => {
     setIsVideoPlaying(true);
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    if (field.startsWith('address.')) {
+      const addressField = field.split('.')[1];
+      setRegistrationData(prev => ({
+        ...prev,
+        address: {
+          ...prev.address,
+          [addressField]: value
+        }
+      }));
+    } else {
+      setRegistrationData(prev => ({
+        ...prev,
+        [field]: value
+      }));
+    }
+  };
+
+  const handleSubmitRegistration = () => {
+    onRegister?.(event.id, registrationData);
+    setShowRegistration(false);
+    setRegistrationData({
+      name: '',
+      email: '',
+      studentId: '',
+      residence: '',
+      roomNumber: '',
+      phoneNumber: '',
+      year: '',
+      address: {
+        street: '',
+        city: '',
+        state: '',
+        zipCode: ''
+      }
+    });
   };
 
   const getTimeUntilEvent = () => {
@@ -171,22 +253,130 @@ const EventVideoPromo: React.FC<EventVideoPromoProps> = ({ event, onRegister }) 
             </button>
           ) : (
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
-                />
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
-                />
-              </div>
-              
+              {/* Personal Information */}
               <div className="bg-white rounded-xl p-4 border border-gray-100">
-                <h5 className="font-semibold text-sm text-gray-700 mb-3">Get countdown reminders:</h5>
-                <div className="grid grid-cols-2 gap-2 text-sm">
+                <h5 className="font-semibold text-sm text-gray-700 mb-3">📝 Personal Information</h5>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input
+                    type="text"
+                    placeholder="Full Name *"
+                    value={registrationData.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                    required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email Address *"
+                    value={registrationData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                    required
+                  />
+                  <input
+                    type="text"
+                    placeholder="Student ID"
+                    value={registrationData.studentId}
+                    onChange={(e) => handleInputChange('studentId', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                  />
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={registrationData.phoneNumber}
+                    onChange={(e) => handleInputChange('phoneNumber', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                  />
+                </div>
+              </div>
+
+              {/* Academic Information */}
+              <div className="bg-white rounded-xl p-4 border border-gray-100">
+                <h5 className="font-semibold text-sm text-gray-700 mb-3">🎓 Academic Information</h5>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <select
+                    value={registrationData.year}
+                    onChange={(e) => handleInputChange('year', e.target.value)}
+                    aria-label="Select academic year"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300 bg-white"
+                  >
+                    <option value="">Select Academic Year</option>
+                    {STUDENT_YEARS.map((year) => (
+                      <option key={year.value} value={year.value}>
+                        {year.label}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={registrationData.residence}
+                    onChange={(e) => handleInputChange('residence', e.target.value)}
+                    aria-label="Select student residence"
+                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300 bg-white"
+                  >
+                    <option value="">Select Residence</option>
+                    {STUDENT_RESIDENCES.map((residence) => (
+                      <option key={residence} value={residence}>
+                        {residence}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                {(registrationData.residence && registrationData.residence !== 'Off-Campus Housing' && registrationData.residence !== 'Commuter Student') && (
+                  <div className="mt-4">
+                    <input
+                      type="text"
+                      placeholder="Room Number (e.g., 204A)"
+                      value={registrationData.roomNumber}
+                      onChange={(e) => handleInputChange('roomNumber', e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Address Information (for off-campus students) */}
+              {(registrationData.residence === 'Off-Campus Housing' || registrationData.residence === 'Commuter Student') && (
+                <div className="bg-white rounded-xl p-4 border border-gray-100">
+                  <h5 className="font-semibold text-sm text-gray-700 mb-3">🏠 Address Information</h5>
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder="Street Address"
+                      value={registrationData.address.street}
+                      onChange={(e) => handleInputChange('address.street', e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                    />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <input
+                        type="text"
+                        placeholder="City"
+                        value={registrationData.address.city}
+                        onChange={(e) => handleInputChange('address.city', e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                      />
+                      <input
+                        type="text"
+                        placeholder="State"
+                        value={registrationData.address.state}
+                        onChange={(e) => handleInputChange('address.state', e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                      />
+                      <input
+                        type="text"
+                        placeholder="ZIP Code"
+                        value={registrationData.address.zipCode}
+                        onChange={(e) => handleInputChange('address.zipCode', e.target.value)}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-electric-mint focus:ring-2 focus:ring-electric-mint/20 outline-none transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Notification Preferences */}
+              <div className="bg-white rounded-xl p-4 border border-gray-100">
+                <h5 className="font-semibold text-sm text-gray-700 mb-3">🔔 Get countdown reminders:</h5>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
                   {event.notifications.reminders.map((reminder, index) => (
                     <label key={index} className="flex items-center space-x-2 cursor-pointer">
                       <input type="checkbox" defaultChecked className="rounded border-gray-300 text-electric-mint focus:ring-electric-mint" />
@@ -194,15 +384,27 @@ const EventVideoPromo: React.FC<EventVideoPromoProps> = ({ event, onRegister }) 
                     </label>
                   ))}
                 </div>
+                <div className="mt-3 pt-3 border-t border-gray-100">
+                  <p className="text-xs text-gray-500 mb-2">Notification methods:</p>
+                  <div className="flex flex-wrap gap-2">
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" defaultChecked className="rounded border-gray-300 text-electric-mint focus:ring-electric-mint" />
+                      <span className="text-xs text-gray-600">📧 Email</span>
+                    </label>
+                    <label className="flex items-center space-x-2 cursor-pointer">
+                      <input type="checkbox" className="rounded border-gray-300 text-electric-mint focus:ring-electric-mint" />
+                      <span className="text-xs text-gray-600">📱 SMS</span>
+                    </label>
+                  </div>
+                </div>
               </div>
 
+              {/* Action Buttons */}
               <div className="flex space-x-3">
                 <button
-                  onClick={() => {
-                    onRegister?.(event.id);
-                    setShowRegistration(false);
-                  }}
-                  className="flex-1 bg-gradient-to-r from-electric-mint to-amber text-white py-3 px-6 rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
+                  onClick={handleSubmitRegistration}
+                  disabled={!registrationData.name || !registrationData.email}
+                  className="flex-1 bg-gradient-to-r from-electric-mint to-amber text-white py-3 px-6 rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 transform disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   Complete Registration
                 </button>
