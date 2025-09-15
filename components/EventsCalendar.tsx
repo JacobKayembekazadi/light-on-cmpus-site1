@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import type { Event } from '../types';
+import type { Event, EventRegistration } from '../types';
+import EventVideoPromo from './EventVideoPromo';
+import RegistrationManager from './RegistrationManager';
+import { notificationService, sampleEventsWithVideos, calculateTimeUntilEvent } from '../services/notificationService';
 
 // Event type icons
 const WorkshopIcon = () => (
@@ -45,23 +48,9 @@ const UsersIcon = () => (
   </svg>
 );
 
-// Sample events data
+// Sample events data - merged with video-enabled events
 const sampleEvents: Event[] = [
-  {
-    id: '1',
-    title: 'Time Management Mastery Workshop',
-    description: 'Learn proven strategies to maximize your productivity and balance academic and personal life effectively.',
-    date: '2025-07-15',
-    time: '2:00 PM - 4:00 PM',
-    location: 'Student Union Building, Room 201',
-    type: 'workshop',
-    image: '/images/light-on-campus-1.png',
-    capacity: 50,
-    registered: 35,
-    featured: true,
-    tags: ['productivity', 'study-skills', 'life-balance'],
-    registrationLink: '#register'
-  },
+  ...sampleEventsWithVideos, // Include events with promotional videos
   {
     id: '2',
     title: 'Industry Leaders Talk: Tech Careers',
@@ -75,7 +64,14 @@ const sampleEvents: Event[] = [
     registered: 78,
     featured: true,
     tags: ['career', 'technology', 'networking'],
-    registrationLink: '#register'
+    registrationLink: '#register',
+    notifications: {
+      enabled: true,
+      reminders: [
+        { timeBeforeEvent: '1 day', message: 'Tech talk tomorrow at 6 PM! Get ready to learn from industry experts!', sent: false },
+        { timeBeforeEvent: '1 hour', message: 'Starting in 1 hour! Join us for the Tech Careers talk on Zoom.', sent: false }
+      ]
+    }
   },
   {
     id: '3',
@@ -90,7 +86,13 @@ const sampleEvents: Event[] = [
     registered: 45,
     featured: false,
     tags: ['social', 'fun', 'community'],
-    registrationLink: '#register'
+    registrationLink: '#register',
+    notifications: {
+      enabled: true,
+      reminders: [
+        { timeBeforeEvent: '2 hours', message: 'Pizza & Game Night starts in 2 hours! Come hungry and ready to play!', sent: false }
+      ]
+    }
   },
   {
     id: '4',
@@ -105,7 +107,14 @@ const sampleEvents: Event[] = [
     registered: 22,
     featured: false,
     tags: ['finance', 'life-skills', 'education'],
-    registrationLink: '#register'
+    registrationLink: '#register',
+    notifications: {
+      enabled: true,
+      reminders: [
+        { timeBeforeEvent: '1 day', message: 'Financial Literacy Seminar tomorrow! Learn essential money management skills.', sent: false },
+        { timeBeforeEvent: '30 minutes', message: 'Starting in 30 minutes! Join us at the Library Conference Room A.', sent: false }
+      ]
+    }
   },
   {
     id: '5',
@@ -120,7 +129,14 @@ const sampleEvents: Event[] = [
     registered: 28,
     featured: true,
     tags: ['career', 'job-search', 'professional-development'],
-    registrationLink: '#register'
+    registrationLink: '#register',
+    notifications: {
+      enabled: true,
+      reminders: [
+        { timeBeforeEvent: '2 days', message: 'Resume Workshop in 2 days! Bring your current resume for personalized feedback.', sent: false },
+        { timeBeforeEvent: '1 hour', message: 'Workshop starts in 1 hour! Don\'t forget to bring your resume draft.', sent: false }
+      ]
+    }
   },
   {
     id: '6',
@@ -135,13 +151,43 @@ const sampleEvents: Event[] = [
     registered: 41,
     featured: false,
     tags: ['mental-health', 'wellness', 'self-care'],
-    registrationLink: '#register'
+    registrationLink: '#register',
+    notifications: {
+      enabled: true,
+      reminders: [
+        { timeBeforeEvent: '1 day', message: 'Mental Health & Wellness talk tomorrow. Take care of yourself! 💙', sent: false },
+        { timeBeforeEvent: '1 hour', message: 'Wellness talk starts in 1 hour at the Health & Wellness Center.', sent: false }
+      ]
+    }
   }
 ];
 
 const EventsCalendar: React.FC = () => {
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'workshop' | 'talk' | 'social' | 'seminar'>('all');
   const [showFeaturedOnly, setShowFeaturedOnly] = useState(false);
+
+  const handleEventRegistration = async (eventId: string) => {
+    // In a real app, this would handle the registration process
+    const event = sampleEvents.find(e => e.id === eventId);
+    if (event) {
+      // Mock registration data
+      const registration: EventRegistration = {
+        eventId,
+        participantEmail: 'user@example.com', // Would come from form
+        participantName: 'Sample User', // Would come from form
+        registrationDate: new Date().toISOString(),
+        notificationPreferences: {
+          email: true,
+          sms: false,
+          push: false
+        }
+      };
+
+      // Schedule notifications
+      await notificationService.scheduleEventReminders(event, registration);
+      alert(`Successfully registered for ${event.title}! You'll receive countdown reminders.`);
+    }
+  };
 
   const getEventIcon = (type: Event['type']) => {
     switch (type) {
@@ -236,6 +282,22 @@ const EventsCalendar: React.FC = () => {
           </button>
         </div>
 
+        {/* Video Promotional Section */}
+        <div className="mb-16">
+          <h3 className="font-serif text-2xl md:text-3xl font-bold text-center mb-8 text-midnight-ink">
+            🎥 Featured Event with Video Preview
+          </h3>
+          <div className="max-w-4xl mx-auto">
+            {sampleEventsWithVideos.slice(0, 1).map(event => (
+              <EventVideoPromo 
+                key={event.id} 
+                event={event} 
+                onRegister={handleEventRegistration}
+              />
+            ))}
+          </div>
+        </div>
+
         {/* Events Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-4">
           {filteredEvents.map((event, index) => {
@@ -276,10 +338,18 @@ const EventsCalendar: React.FC = () => {
 
                 {/* Event Content */}
                 <div className="p-6">
-                  {/* Event Title */}
-                  <h3 className="font-serif text-xl md:text-2xl font-bold text-midnight-ink mb-3 group-hover:text-electric-mint transition-colors duration-300">
+                  {/* Event Title & Countdown */}
+                  <h3 className="font-serif text-xl md:text-2xl font-bold text-midnight-ink mb-2 group-hover:text-electric-mint transition-colors duration-300">
                     {event.title}
                   </h3>
+                  
+                  {/* Live Countdown Timer */}
+                  <div className="bg-gradient-to-r from-electric-mint/10 to-amber/10 rounded-lg p-2 mb-3 text-center">
+                    <span className="text-xs font-semibold text-gray-600">Starts in: </span>
+                    <span className="text-sm font-bold bg-gradient-to-r from-electric-mint to-amber bg-clip-text text-transparent">
+                      {calculateTimeUntilEvent(event.date, event.time)}
+                    </span>
+                  </div>
 
                   {/* Event Description */}
                   <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-4">
@@ -323,14 +393,14 @@ const EventsCalendar: React.FC = () => {
 
                   {/* Registration Button */}
                   <button
-                    onClick={() => window.open(event.registrationLink, '_blank')}
+                    onClick={() => handleEventRegistration(event.id)}
                     className={`w-full py-3 px-4 rounded-full font-semibold text-white transition-all duration-300 transform hover:scale-105 hover:shadow-lg ${
                       eventColor === 'electric-mint' 
                         ? 'bg-gradient-to-r from-electric-mint to-electric-mint/80 hover:from-electric-mint/90 hover:to-electric-mint' 
                         : 'bg-gradient-to-r from-amber to-amber/80 hover:from-amber/90 hover:to-amber'
                     }`}
                   >
-                    {event.registered >= event.capacity ? 'Join Waitlist' : 'Register Now'}
+                    {event.registered >= event.capacity ? 'Join Waitlist' : 'Register & Get Reminders'}
                   </button>
                 </div>
               </div>
@@ -346,6 +416,27 @@ const EventsCalendar: React.FC = () => {
             <p className="text-gray-600">Try adjusting your filters to see more events.</p>
           </div>
         )}
+
+        {/* Registration Dashboard */}
+        <div className="mb-16">
+          <RegistrationManager events={sampleEvents} />
+        </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-16 md:mt-20">
+          <div className="bg-gradient-to-r from-electric-mint/10 via-white to-amber/10 rounded-3xl p-8 md:p-12 backdrop-blur-sm border border-gray-100 shadow-xl">
+            <h3 className="font-serif text-2xl md:text-3xl font-bold mb-4 text-midnight-ink">
+              Have an Event Idea?
+            </h3>
+            <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+              We're always looking for new workshop ideas, speakers, and social activities. 
+              Share your suggestions and help us create events that matter to you.
+            </p>
+            <button className="bg-gradient-to-r from-electric-mint to-amber text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform hover:-translate-y-1">
+              Suggest an Event
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   );

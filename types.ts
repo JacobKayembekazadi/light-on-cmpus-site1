@@ -22,15 +22,46 @@ export interface TeamMember {
 }
 
 export interface Event {
-  id: number;
+  id: string;
   title: string;
   description: string;
   date: string;
   time: string;
   location: string;
-  type: 'workshop' | 'talk' | 'social' | 'meeting';
-  spotsAvailable: number;
-  totalSpots: number;
-  image?: string;
-  isRegistrationOpen: boolean;
+  type: 'workshop' | 'talk' | 'social' | 'seminar';
+  image: string;
+  capacity: number;
+  registered: number;
+  featured: boolean;
+  tags: string[];
+  registrationLink?: string;
+  // Video advertisement features
+  promotionalVideo?: {
+    url: string;
+    thumbnail: string;
+    duration: string;
+    title: string;
+    description: string;
+  };
+  // Notification settings
+  notifications: {
+    enabled: boolean;
+    reminders: Array<{
+      timeBeforeEvent: string; // e.g., "2 days", "3 hours", "1 hour"
+      message: string;
+      sent: boolean;
+    }>;
+  };
+}
+
+export interface EventRegistration {
+  eventId: string;
+  participantEmail: string;
+  participantName: string;
+  registrationDate: string;
+  notificationPreferences: {
+    email: boolean;
+    sms?: boolean;
+    push?: boolean;
+  };
 }
