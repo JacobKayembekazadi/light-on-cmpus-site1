@@ -249,28 +249,23 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <section id="blog" className="py-12 md:py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100 -mx-4 md:-mx-6 px-4 md:px-6 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-electric-mint/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-r from-electric-mint/3 to-amber/3 rounded-full blur-3xl"></div>
-      
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="blog" className="bg-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-20">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-6 px-4">
+        <div className="text-center mb-12 md:mb-14">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Light on Campus
             <span className="block bg-gradient-to-r from-electric-mint to-amber bg-clip-text text-transparent">
               Blog & Discussions
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto px-4 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Discover insights, tips, and stories from our community. Join the conversation on Facebook and share your experiences!
           </p>
         </div>
 
         {/* Search and Filter Controls */}
-        <div className="mb-12 px-4">
+        <div className="mb-12">
           {/* Search Bar */}
           <div className="max-w-md mx-auto mb-8">
             <div className="relative">
@@ -308,7 +303,7 @@ const Blog: React.FC = () => {
 
         {/* Featured Posts */}
         {featuredPosts.length > 0 && (
-          <div className="mb-16 px-4">
+          <div className="mb-16">
             <h3 className="font-serif text-2xl md:text-3xl font-bold text-center mb-8 text-midnight-ink">
               ⭐ Featured Posts
             </h3>
@@ -316,16 +311,16 @@ const Blog: React.FC = () => {
               {featuredPosts.slice(0, 2).map((post) => (
                 <article
                   key={post.id}
-                  className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+                  className="group bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
                 >
                   {/* Post Image */}
                   <div className="relative h-64 overflow-hidden">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                     
                     {/* Category Badge */}
                     <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold text-white ${
@@ -444,15 +439,15 @@ const Blog: React.FC = () => {
 
         {/* Regular Posts Grid */}
         {regularPosts.length > 0 && (
-          <div className="px-4">
+          <div>
             <h3 className="font-serif text-2xl md:text-3xl font-bold text-center mb-8 text-midnight-ink">
               📚 Latest Posts
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {regularPosts.map((post, index) => (
                 <article
                   key={post.id}
-                  className={`group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 overflow-hidden border border-gray-100 ${
+                  className={`group bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden ${
                     index % 2 === 0 ? 'md:mt-8' : ''
                   }`}
                 >
@@ -461,9 +456,9 @@ const Blog: React.FC = () => {
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
                     
                     {/* Category Badge */}
                     <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold text-white ${
@@ -570,8 +565,8 @@ const Blog: React.FC = () => {
         )}
 
         {/* Call to Action */}
-        <div className="text-center mt-16 md:mt-20 px-4">
-          <div className="bg-gradient-to-r from-electric-mint/10 via-white to-amber/10 rounded-3xl p-8 md:p-12 backdrop-blur-sm border border-gray-100 shadow-xl">
+        <div className="text-center mt-16 md:mt-20">
+          <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-sm">
             <h3 className="font-serif text-2xl md:text-3xl font-bold mb-4 text-midnight-ink">
               Join Our Community
             </h3>
@@ -584,14 +579,14 @@ const Blog: React.FC = () => {
                 href="https://facebook.com/lightoncampus"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-lg hover:bg-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
+                className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300"
               >
                 <svg className="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
                 Follow on Facebook
               </a>
-              <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform">
+              <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
                 Submit a Blog Post
               </button>
             </div>
