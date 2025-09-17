@@ -20,7 +20,7 @@ const Header: React.FC = () => {
                     <img
                         src="/images/light-on-campus-no-bg.png"
                         alt="Light on Campus logo"
-                        className="h-12 md:h-14 w-auto"
+                        className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto"
                         loading="eager"
                     />
                 </a>
