@@ -98,8 +98,8 @@ const Footer: React.FC = () => {
                         <h4 className="font-serif text-xl font-bold mt-8 mb-3">Follow Us</h4>
                         <div className="flex space-x-4">
                             <a href="#" className="text-gray-400 hover:text-electric-mint" aria-label="LinkedIn"><LinkedInIcon /></a>
-                            <a href="#" className="text-gray-400 hover:text-electric-mint" aria-label="Instagram"><InstagramIcon /></a>
-                            <a href="#" className="text-gray-400 hover:text-electric-mint" aria-label="TikTok"><TikTokIcon /></a>
+                            <a href="https://www.instagram.com/lightoncampusministry/?igsh=azdzN2hwZnhuNzFw#" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-electric-mint" aria-label="Instagram"><InstagramIcon /></a>
+                            <a href="https://www.tiktok.com/@nlelightoncampus?_t=ZS-8xqqjKeZUQc&_r=1" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-electric-mint" aria-label="TikTok"><TikTokIcon /></a>
                         </div>
                     </div>
                 </div>
