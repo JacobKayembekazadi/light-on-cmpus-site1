@@ -15,12 +15,12 @@ const Header: React.FC = () => {
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
-            <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+            <nav className="container mx-auto px-6 py-3 md:py-4 flex justify-between items-center">
                 <a href="#home" className="flex items-center gap-2" aria-label="Light on Campus home">
                     <img
                         src="/images/light-on-campus-no-bg.png"
                         alt="Light on Campus logo"
-                        className="h-10 w-auto"
+                        className="h-12 md:h-14 w-auto"
                         loading="eager"
                     />
                 </a>
