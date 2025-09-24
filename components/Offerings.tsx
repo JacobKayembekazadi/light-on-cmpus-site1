@@ -152,9 +152,13 @@ const Offerings: React.FC = () => {
                         <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
                             Connect with a local church community that aligns with your values and supports your spiritual journey during college and beyond.
                         </p>
-                        <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
+                        <a
+                            href="#contact"
+                            className="inline-block px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-electric-mint/30"
+                            aria-label="Find a church near you – open contact form"
+                        >
                             Find a Church Near You
-                        </button>
+                        </a>
                     </div>
                 </div>
                 </div>
