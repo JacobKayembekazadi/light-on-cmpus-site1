@@ -13,13 +13,13 @@ const offeringsData: ExtendedOffering[] = [
     {
         title: "Love, Dating & Relationships",
         description: "Learn respectful communication, consent, and how to build healthy boundaries.",
-    image: "/images/LOVE_DATING.jpg",
+        image: "/images/LOVE-DATING.jpg",
         icon: "❤️"
     },
     {
         title: "Personal Branding & Etiquette",
         description: "Dining etiquette, communication skills, public speaking, and professional presence for every setting.",
-    image: "/images/PERSONAL_BRANDING.jpg",
+        image: "/images/PERSONAL-BRANDING.jpg",
         icon: "🎤"
     },
     {
