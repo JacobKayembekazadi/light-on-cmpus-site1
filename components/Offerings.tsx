@@ -2,70 +2,93 @@
 import React from 'react';
 import type { Offering } from '../types';
 
+// Extend locally to support optional icon without changing global type
+interface ExtendedOffering extends Offering {
+    icon?: string;
+    badgeLabel?: string; // optional future use
+}
+
 // Core development & life skills offerings
-const offeringsData: Offering[] = [
+const offeringsData: ExtendedOffering[] = [
     {
         title: "Love, Dating & Relationships",
         description: "Learn respectful communication, consent, and how to build healthy boundaries.",
-        image: "/images/light-on-campus-2.png"
+        image: "/images/light-on-campus-2.png",
+        icon: "❤️"
     },
     {
         title: "Personal Branding & Etiquette",
         description: "Dining etiquette, communication skills, public speaking, and professional presence for every setting.",
-        image: "/images/light-on-campus-3.jpg"
+        image: "/images/light-on-campus-3.jpg",
+        icon: "🎤"
     },
     {
         title: "Getting Ready for Employment",
         description: "CV clinics, mock interviews, and LinkedIn audits to land your dream job.",
-        image: "/images/light-on-campus-4.jpg"
+        image: "/images/light-on-campus-4.jpg",
+        icon: "💼"
     },
     {
         title: "Let's Talk About Money",
         description: "Master budgeting, student investing, and managing debt effectively.",
-        image: "/images/light-on-campus-5.jpg"
+        image: "/images/light-on-campus-5.jpg",
+        icon: "💰"
     },
     {
         title: "Leadership Training",
         description: "Build confidence and command the room with our leadership bootcamps and debate clubs.",
-        image: "/images/lighton-campus-blog-1.jpg"
+        image: "/images/lighton-campus-blog-1.jpg",
+        icon: "🧭"
     },
     {
         title: "Guided Educational Tours",
         description: "Experience learning outside the classroom with 'edutainment' trips.",
-        image: "/images/lighton-campus-blog-2.jpg"
+        image: "/images/lighton-campus-blog-2.jpg",
+        icon: "🚌"
     }
 ];
 
 // Spiritual development offerings (renamed per request)
-const spiritualOfferings: Offering[] = [
+const spiritualOfferings: ExtendedOffering[] = [
     {
         title: "Prayer",
         description: "Find peace and purpose through prayer groups, spiritual mentorship, and faith-based community.",
-        image: "/images/light-on-campus-6.png"
+        image: "/images/light-on-campus-6.png",
+        icon: "🙏"
     },
     {
         title: "Counselling",
         description: "Professional counselling services and peer support for emotional and mental well-being.",
-        image: "/images/our-community.jpg"
+        image: "/images/our-community.jpg",
+        icon: "💬"
     },
     {
         title: "Bible Study",
         description: "Dive deep into scripture through guided Bible studies, discussions, and spiritual growth sessions.",
-        image: "/images/more-than-an-org-1.jpg"
+        image: "/images/more-than-an-org-1.jpg",
+        icon: "📖"
     }
 ];
 
-const OfferingCard: React.FC<{ offering: Offering }> = ({ offering }) => (
+const OfferingCard: React.FC<{ offering: ExtendedOffering }> = ({ offering }) => (
     <div className="group relative bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden">
         <div className="relative h-48 sm:h-56 overflow-hidden">
-            <img 
-                src={offering.image} 
-                alt={offering.title}
+            <img
+                src={offering.image}
+                alt={offering.title + ' – Light on Campus Offering'}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+            {offering.icon && (
+                <div className="absolute top-3 left-3 bg-white/85 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1 shadow-sm">
+                    <span>{offering.icon}</span>
+                    <span className="text-gray-700">{offering.title.split(' ')[0]}</span>
+                </div>
+            )}
         </div>
-        
+
         <div className="relative z-10 p-6 md:p-7">
             <h3 className="font-serif text-xl md:text-2xl font-bold mb-2 text-midnight-ink">
                 {offering.title}
@@ -104,7 +127,7 @@ const Offerings: React.FC = () => {
                 </div>
 
                 {/* Spiritual Development Section */}
-                <div className="mt-16 md:mt-20">
+                <div id="spiritual-development" className="mt-16 md:mt-20 scroll-mt-24">
                     <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-midnight-ink">
                         Spiritual <span className="bg-gradient-to-r from-electric-mint to-amber bg-clip-text text-transparent">Development</span>
                     </h3>
