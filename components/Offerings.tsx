@@ -13,37 +13,37 @@ const offeringsData: ExtendedOffering[] = [
     {
         title: "Love, Dating & Relationships",
         description: "Learn respectful communication, consent, and how to build healthy boundaries.",
-    image: "images/LOVE_DATING.jpg",
+    image: "/images/LOVE_DATING.jpg",
         icon: "❤️"
     },
     {
         title: "Personal Branding & Etiquette",
         description: "Dining etiquette, communication skills, public speaking, and professional presence for every setting.",
-    image: "images/PERSONAL_BRANDING.jpg",
+    image: "/images/PERSONAL_BRANDING.jpg",
         icon: "🎤"
     },
     {
         title: "Getting Ready for Employment",
         description: "CV clinics, mock interviews, and LinkedIn audits to land your dream job.",
-    image: "images/GETTING_READY_FOR_EMPLOYMENT.jpg",
+    image: "/images/GETTING_READY_FOR_EMPLOYMENT.jpg",
         icon: "💼"
     },
     {
         title: "Let's Talk About Money",
         description: "Master budgeting, student investing, and managing debt effectively.",
-    image: "images/LETS_TALK_MONEY.jpg",
+    image: "/images/LETS_TALK_MONEY.jpg",
         icon: "💰"
     },
     {
         title: "Leadership Training",
         description: "Build confidence and command the room with our leadership bootcamps and debate clubs.",
-    image: "images/LEADERSHIP_TRAINING.jpg",
+    image: "/images/LEADERSHIP_TRAINING.jpg",
         icon: "🧭"
     },
     {
         title: "Guided Educational Tours",
         description: "Experience learning outside the classroom with 'edutainment' trips.",
-    image: "images/guided_education.jpg",
+    image: "/images/guided_education.jpg",
         icon: "🚌"
     }
 ];
@@ -53,19 +53,19 @@ const spiritualOfferings: ExtendedOffering[] = [
     {
         title: "Prayer",
         description: "Find peace and purpose through prayer groups, spiritual mentorship, and faith-based community.",
-    image: "images/prayer.jpg",
+    image: "/images/prayer.jpg",
         icon: "🙏"
     },
     {
         title: "Counselling",
         description: "Professional counselling services and peer support for emotional and mental well-being.",
-    image: "images/councelling.jpg",
+    image: "/images/councelling.jpg",
         icon: "💬"
     },
     {
         title: "Bible Study",
         description: "Dive deep into scripture through guided Bible studies, discussions, and spiritual growth sessions.",
-    image: "images/bible_study.jpg",
+    image: "/images/bible_study.jpg",
         icon: "📖"
     }
 ];
