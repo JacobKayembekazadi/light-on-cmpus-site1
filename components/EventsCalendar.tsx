@@ -272,14 +272,17 @@ export default function EventsCalendar() {
           </div>
         )}
 
-        <div className="mt-12 md:mt-16">
-        </div>
-
         <div className="text-center mt-16 md:mt-20">
           <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-sm">
             <h3 className="font-serif text-2xl md:text-3xl font-bold mb-3 text-midnight-ink">Have an Event Idea?</h3>
             <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">We're always looking for new workshop ideas, speakers, and social activities. Share your suggestions and help us create events that matter to you.</p>
-            <button className="px-6 py-3 rounded-xl bg-amber text-white font-semibold hover:brightness-95">Suggest an Event</button>
+            <a
+              href="#contact"
+              className="inline-block px-6 py-3 rounded-xl bg-amber text-white font-semibold hover:brightness-95 focus:outline-none focus-visible:ring-4 focus-visible:ring-amber/50"
+              aria-label="Suggest an event (opens Get Involved section contact form)"
+            >
+              Suggest an Event
+            </a>
           </div>
         </div>
       </div>

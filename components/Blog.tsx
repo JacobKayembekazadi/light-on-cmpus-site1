@@ -610,9 +610,13 @@ const Blog: React.FC = () => {
               </a>
             </div>
             <div className="mt-6">
-              <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
+              <a
+                href="#contact"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-electric-mint/50"
+                aria-label="Submit a blog post (opens Get Involved section contact form)"
+              >
                 Submit a Blog Post
-              </button>
+              </a>
             </div>
           </div>
         </div>
