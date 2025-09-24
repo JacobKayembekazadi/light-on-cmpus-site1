@@ -2,6 +2,7 @@
 import React from 'react';
 import type { Offering } from '../types';
 
+// Core development & life skills offerings
 const offeringsData: Offering[] = [
     {
         title: "Love, Dating & Relationships",
@@ -32,22 +33,26 @@ const offeringsData: Offering[] = [
         title: "Guided Educational Tours",
         description: "Experience learning outside the classroom with 'edutainment' trips.",
         image: "/images/lighton-campus-blog-2.jpg"
-    },
+    }
+];
+
+// Spiritual development offerings (renamed per request)
+const spiritualOfferings: Offering[] = [
     {
-        title: "Prayer & Spiritual Support",
+        title: "Prayer",
         description: "Find peace and purpose through prayer groups, spiritual mentorship, and faith-based community.",
         image: "/images/light-on-campus-6.png"
     },
     {
-        title: "Counselling & Mental Wellness",
+        title: "Counselling",
         description: "Professional counselling services and peer support for emotional and mental well-being.",
         image: "/images/our-community.jpg"
     },
     {
-        title: "Word Study & Biblical Learning",
+        title: "Bible Study",
         description: "Dive deep into scripture through guided Bible studies, discussions, and spiritual growth sessions.",
         image: "/images/more-than-an-org-1.jpg"
-    },
+    }
 ];
 
 const OfferingCard: React.FC<{ offering: Offering }> = ({ offering }) => (
@@ -86,9 +91,26 @@ const Offerings: React.FC = () => {
                         Discover programs designed to empower your journey through college and beyond
                     </p>
                 </div>
+                {/* General Offerings */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                        {offeringsData.map((offering, index) => (
-                            <div 
+                    {offeringsData.map((offering, index) => (
+                        <div
+                            key={offering.title}
+                            className={`${index % 3 === 1 ? 'lg:mt-6' : ''}`}
+                        >
+                            <OfferingCard offering={offering} />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Spiritual Development Section */}
+                <div className="mt-16 md:mt-20">
+                    <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-midnight-ink">
+                        Spiritual <span className="bg-gradient-to-r from-electric-mint to-amber bg-clip-text text-transparent">Development</span>
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                        {spiritualOfferings.map((offering, index) => (
+                            <div
                                 key={offering.title}
                                 className={`${index % 3 === 1 ? 'lg:mt-6' : ''}`}
                             >
@@ -96,21 +118,22 @@ const Offerings: React.FC = () => {
                             </div>
                         ))}
                     </div>
+                </div>
 
-                    {/* Call to Action */}
-                    <div className="text-center mt-16 md:mt-20">
-                        <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-sm">
-                            <h3 className="font-serif text-2xl md:text-3xl font-bold mb-4 text-midnight-ink">
-                                Looking for a Church?
-                            </h3>
-                            <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
-                                Connect with a local church community that aligns with your values and supports your spiritual journey during college and beyond.
-                            </p>
-                            <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
-                                Find a Church Near You
-                            </button>
-                        </div>
+                {/* Call to Action */}
+                <div className="text-center mt-16 md:mt-20">
+                    <div className="bg-white rounded-2xl p-8 md:p-12 border border-gray-200 shadow-sm">
+                        <h3 className="font-serif text-2xl md:text-3xl font-bold mb-4 text-midnight-ink">
+                            Looking for a Church?
+                        </h3>
+                        <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+                            Connect with a local church community that aligns with your values and supports your spiritual journey during college and beyond.
+                        </p>
+                        <button className="px-8 py-4 bg-gradient-to-r from-electric-mint to-amber text-white rounded-full font-semibold text-lg hover:shadow-xl transition-all duration-300">
+                            Find a Church Near You
+                        </button>
                     </div>
+                </div>
                 </div>
         </section>
     );
