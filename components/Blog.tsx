@@ -114,9 +114,9 @@ const sampleBlogPosts: BlogPost[] = [
     comments: 8,
     facebookPost: {
       postId: '123456789',
-      pageId: 'lightoncampus',
-      postUrl: 'https://facebook.com/lightoncampus/posts/123456789',
-      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://facebook.com/lightoncampus/posts/123456789',
+      pageId: '100084610977889',
+      postUrl: 'https://www.facebook.com/permalink.php?story_fbid=123456789&id=100084610977889',
+      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/permalink.php?story_fbid=123456789&id=100084610977889',
       discussionCount: 15,
       reactions: { like: 18, love: 6, haha: 0, wow: 2, sad: 0, angry: 0 }
     }
@@ -142,9 +142,9 @@ const sampleBlogPosts: BlogPost[] = [
     comments: 12,
     facebookPost: {
       postId: '123456790',
-      pageId: 'lightoncampus',
-      postUrl: 'https://facebook.com/lightoncampus/posts/123456790',
-      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://facebook.com/lightoncampus/posts/123456790',
+      pageId: '100084610977889',
+      postUrl: 'https://www.facebook.com/permalink.php?story_fbid=123456790&id=100084610977889',
+      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/permalink.php?story_fbid=123456790&id=100084610977889',
       discussionCount: 23,
       reactions: { like: 25, love: 7, haha: 0, wow: 0, sad: 0, angry: 0 }
     }
@@ -170,9 +170,9 @@ const sampleBlogPosts: BlogPost[] = [
     comments: 18,
     facebookPost: {
       postId: '123456791',
-      pageId: 'lightoncampus',
-      postUrl: 'https://facebook.com/lightoncampus/posts/123456791',
-      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://facebook.com/lightoncampus/posts/123456791',
+      pageId: '100084610977889',
+      postUrl: 'https://www.facebook.com/permalink.php?story_fbid=123456791&id=100084610977889',
+      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/permalink.php?story_fbid=123456791&id=100084610977889',
       discussionCount: 31,
       reactions: { like: 30, love: 15, haha: 0, wow: 0, sad: 0, angry: 0 }
     }
@@ -198,9 +198,9 @@ const sampleBlogPosts: BlogPost[] = [
     comments: 6,
     facebookPost: {
       postId: '123456792',
-      pageId: 'lightoncampus',
-      postUrl: 'https://facebook.com/lightoncampus/posts/123456792',
-      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://facebook.com/lightoncampus/posts/123456792',
+      pageId: '100084610977889',
+      postUrl: 'https://www.facebook.com/permalink.php?story_fbid=123456792&id=100084610977889',
+      embedUrl: 'https://www.facebook.com/plugins/post.php?href=https://www.facebook.com/permalink.php?story_fbid=123456792&id=100084610977889',
       discussionCount: 12,
       reactions: { like: 16, love: 3, haha: 0, wow: 0, sad: 0, angry: 0 }
     }
@@ -576,7 +576,7 @@ const Blog: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://facebook.com/lightoncampus"
+                href="https://www.facebook.com/profile.php?id=100084610977889"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white rounded-full font-semibold text-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300"

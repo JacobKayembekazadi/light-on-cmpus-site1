@@ -50,7 +50,8 @@ export interface FacebookPageInfo {
 }
 
 class FacebookService {
-  private pageId: string = 'lightoncampus';
+  // Using numeric profile/page ID provided instead of vanity username
+  private pageId: string = '100084610977889';
 
   constructor() {
     // In production, this would come from environment variables
@@ -156,7 +157,7 @@ class FacebookService {
    * Get Facebook page URL
    */
   getPageUrl(): string {
-    return `https://facebook.com/${this.pageId}`;
+    return `https://www.facebook.com/profile.php?id=${this.pageId}`;
   }
 
   /**
@@ -178,7 +179,7 @@ class FacebookService {
         id: '123456789',
         message: '🎯 Time management is crucial for student success! Check out our latest blog post with 5 proven strategies that top-performing students use. What\'s your best time management tip? Share in the comments! 👇 #StudentSuccess #TimeManagement #LightOnCampus',
         created_time: '2025-07-10T10:00:00Z',
-        permalink_url: 'https://facebook.com/lightoncampus/posts/123456789',
+  permalink_url: 'https://www.facebook.com/permalink.php?story_fbid=123456789&id=100084610977889',
         likes: {
           summary: {
             total_count: 18
@@ -199,7 +200,7 @@ class FacebookService {
         id: '123456790',
         message: '🤝 Networking isn\'t just about collecting business cards – it\'s about building genuine relationships! Our new blog post breaks down how to network effectively as a student. What\'s been your best networking experience? #Networking #CareerDevelopment #StudentLife',
         created_time: '2025-07-08T14:30:00Z',
-        permalink_url: 'https://facebook.com/lightoncampus/posts/123456790',
+  permalink_url: 'https://www.facebook.com/permalink.php?story_fbid=123456790&id=100084610977889',
         likes: {
           summary: {
             total_count: 25
@@ -220,7 +221,7 @@ class FacebookService {
         id: '123456791',
         message: '💚 Your mental health matters! College can be challenging, but you don\'t have to face it alone. Check out our comprehensive guide to mental health resources and support. Remember: it\'s okay to ask for help. 🤗 #MentalHealth #Wellness #StudentSupport',
         created_time: '2025-07-05T16:45:00Z',
-        permalink_url: 'https://facebook.com/lightoncampus/posts/123456791',
+  permalink_url: 'https://www.facebook.com/permalink.php?story_fbid=123456791&id=100084610977889',
         likes: {
           summary: {
             total_count: 30
@@ -241,7 +242,7 @@ class FacebookService {
         id: '123456792',
         message: '🏠 Dorm life doesn\'t have to be cramped and uncomfortable! Check out our top 10 dorm hacks that will transform your space. Which hack surprised you the most? Share your own dorm tips below! #DormLife #StudentLiving #CollegeTips',
         created_time: '2025-07-03T12:15:00Z',
-        permalink_url: 'https://facebook.com/lightoncampus/posts/123456792',
+  permalink_url: 'https://www.facebook.com/permalink.php?story_fbid=123456792&id=100084610977889',
         likes: {
           summary: {
             total_count: 16
