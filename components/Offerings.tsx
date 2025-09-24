@@ -25,25 +25,25 @@ const offeringsData: ExtendedOffering[] = [
     {
         title: "Getting Ready for Employment",
         description: "CV clinics, mock interviews, and LinkedIn audits to land your dream job.",
-    image: "/images/GETTING_READY_FOR_EMPLOYMENT.jpg",
+    image: "/images/GETTING-READY_FOR-EMPLOYMENT.jpg",
         icon: "💼"
     },
     {
         title: "Let's Talk About Money",
         description: "Master budgeting, student investing, and managing debt effectively.",
-    image: "/images/LETS_TALK_MONEY.jpg",
+    image: "/images/LETS-TALK-MONEY.jpg",
         icon: "💰"
     },
     {
         title: "Leadership Training",
         description: "Build confidence and command the room with our leadership bootcamps and debate clubs.",
-    image: "/images/LEADERSHIP_TRAINING.jpg",
+    image: "/images/LEADERSHIP-TRAINING.jpg",
         icon: "🧭"
     },
     {
         title: "Guided Educational Tours",
         description: "Experience learning outside the classroom with 'edutainment' trips.",
-    image: "/images/guided_education.jpg",
+    image: "/images/guided-education.jpg",
         icon: "🚌"
     }
 ];
@@ -65,7 +65,7 @@ const spiritualOfferings: ExtendedOffering[] = [
     {
         title: "Bible Study",
         description: "Dive deep into scripture through guided Bible studies, discussions, and spiritual growth sessions.",
-    image: "/images/bible_study.jpg",
+    image: "/images/bible-study.jpg",
         icon: "📖"
     }
 ];
